@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Teacher\Course;
 
 use App\Models\Course;
 use Livewire\Component;
+use App\Models\Category;
 
 class Courses extends Component
 {
@@ -17,40 +18,41 @@ class Courses extends Component
     public $image = "";
     public $description = "";
 
-    
-    public function showModal(){
-    
-        return $this->openFormModal = true;
-    }
 
 
-    public function closeModal(){
-        return $this->openFormModal = false;
-    }
- 
+
+
 
     public function render()
     {
-        return view('livewire.teacher.course.courses');
+        $categories = Category::all();
+        return view('livewire.teacher.course.courses',['categories'=>$categories]);
+    }
+
+    public function resetFields(){
+        $this->name = "";
+        $this->category = "";
+        $this->price = "";
+        $this->description = "";
     }
 
 
     public function addCourse(){
-     
-         $course = new Course;
       
+         $course = new Course;
+
          $course->name = $this->name;
          $course->category = $this->category;
          $course->price = $this->price;
         $course->description = $this->description;
 
         $created = $course->save();
-
-        if($created){
-
+        $this->resetFields();
 
 
-        }
+
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('layouts.backend.component.head')
+@livewireStyles
 <body>
 
 
@@ -79,7 +80,7 @@
 	***********************************-->
 
 
-
+    @livewireScripts
 	<script src="{{ asset('backend/vendor/global/global.min.js') }}"></script>
 
 	<script src="{{ asset('backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
@@ -167,6 +168,13 @@
 			$(".booking-calender .fa.fa-clock-o").addClass('fa-clock');
 		});
 	</script>
+
+           <script type="text/javascript">
+        window.livewire.on('userStore', () => {
+            $('#exampleModal').modal('hide');
+        });
+
+    </script>
 
 </body>
 </html>
